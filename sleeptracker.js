@@ -26,24 +26,47 @@ function actionDot(category, value){
 	return color
 }
 
-dv.table(["Date", "", "Bedtime", "", "Wakeup", "", "In Bed (min)"], 
+function clockTime(number) {
+  // Check if the number is already in clock format
+  let stringCopy = String(number)
+  if (stringCopy.includes(":")) {
+    // Return the number as a clock time string
+    return stringCopy;
+  }
+
+  // Split the number into the integer part and decimal part
+  const hours = Math.floor(number);
+  const minutes = Math.round((number % 1) * 60);
+
+  // Pad the hours and minutes with leading zeros if necessary
+  const paddedHours = hours.toString().padStart(2, '0');
+  const paddedMinutes = minutes.toString().padStart(2, '0');
+
+  // Create the clock time string in the format HH:MM
+  const clockTime = `${paddedHours}:${paddedMinutes}`;
+
+  return clockTime;
+}
+
+dv.table(["Date", "", "Bedtime", "", "Wakeup","Hours Slept", "", "In Bed (min)"], 
 dv.pages("#journal")
 	.sort(p => p.file.ctime, "desc")
 	.map(p => [p.file.link, 
 	actionDot("bedtime",p.bedtime),
-	p.bedtime,
+	clockTime(p.bedtime),
 	actionDot("wakeup",p.wakeup),
-	p.wakeup,
+	clockTime(p.wakeup),
+	String(p.wakeup - p.bedtime),
 	actionDot("stay",p.stay),
 	p.stay
 		])
 )
 
 //Sets all columns to the same width
-this.container.querySelectorAll(".table-view-table td").forEach(s => s.style.width ="200px");
+this.container.querySelectorAll(".table-view-table td").forEach(s => s.style.width ="150px");
 
 for (let i = 2; i < 8; i+=2) {  
-  this.container.querySelectorAll(".table-view-table td:nth-child(" + i + ")").forEach(s => s.style.width = "50px");
+  this.container.querySelectorAll(".table-view-table td:nth-child(" + i + ")").forEach(s => s.style.width = "10px");
 }
 
 
