@@ -1,29 +1,21 @@
 // ```dataviewjs
 
 function actionDot(category, value){
-	var color = ""
-	switch (category) {
-		case "bedtime":
-			if (value >= 3 && value < 10) {var color = "🔴"}
-			if (value <= 11 && value >= 1) {var color = "🟡"}
-			return color
-			break
-		case "wakeup":
-			if (value > 10) {var color = "🔴"}
-			if (value < 7) {var color = "🟡"}
-			return color
-			break
-		case "stay":
-			if (value > 30) {var color = "🟡"}
-			if (value > 60) {var color = "🔴"}
-			return color
-			break
-		default:
-			var color = " "
-		
-	}
-	
-	return color
+    switch (category) {
+        case "bedtime":
+            if (value >= 3 && value < 10) { return "🔴" }
+            if (value <= 11 && value >= 1) { return "🟡" }
+            return ""
+        case "wakeup":
+            if (value > 10) { return "🔴" }
+            if (value < 7) { return "🟡" }
+            return ""
+        case "stay":
+            if (value > 30) { return "🟡" }
+            if (value > 60) { return "🔴" }
+            return ""    
+    }
+    return ""
 }
 
 function clockTime(number) {
