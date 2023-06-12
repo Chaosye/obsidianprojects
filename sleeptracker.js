@@ -62,7 +62,7 @@ dv.pages("#journal")
 this.container.querySelectorAll(".table-view-table td").forEach(s => s.style.width ="150px");
 
 //Sets alert dot columns to a shorter width, does so by assuming every 2nd column is for a dot
-for (let i = 2; i < 8; i+=2) {  
+for (let i = 2; i < 10; i+=2) {  
   this.container.querySelectorAll(".table-view-table td:nth-child(" + i + ")").forEach(s => s.style.width = "10px");
 }
 
