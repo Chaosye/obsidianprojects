@@ -48,7 +48,7 @@ function clockTime(number) {
   return clockTime;
 }
 
-dv.table(["Date", "", "Bedtime", "", "Wakeup","Hours Slept", "", "In Bed (min)"], 
+dv.table(["Date", "", "Bedtime", "", "Wakeup", "", "Hours Slept", "", "In Bed (min)"], 
 dv.pages("#journal")
 	.sort(p => p.file.ctime, "desc")
 	.map(p => [p.file.link, 
@@ -56,6 +56,7 @@ dv.pages("#journal")
 	clockTime(p.bedtime),
 	actionDot("wakeup",p.wakeup),
 	clockTime(p.wakeup),
+	"",
 	String(p.wakeup - p.bedtime),
 	actionDot("stay",p.stay),
 	p.stay
