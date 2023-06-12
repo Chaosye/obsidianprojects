@@ -1,18 +1,20 @@
 // ```dataviewjs
+// This is meant for use with Dataview's dataviewjs options in Obsidian.
+// Idea for action dots is from https://nightingaledvs.com/why-i-stopped-using-bullet-graphs-and-what-i-now-use-instead/
 
 function actionDot(category, value){
     switch (category) {
         case "bedtime":
-            if (value >= 3 && value < 10) { return "🔴" }
+            if (value >= 2 && value < 10) { return "🔴" }
             if (value <= 11 && value >= 1) { return "🟡" }
             return ""
         case "wakeup":
-            if (value > 10) { return "🔴" }
-            if (value < 7) { return "🟡" }
+            if (value >= 10) { return "🔴" }
+            if (value <= 7) { return "🟡" }
             return ""
         case "stay":
-            if (value > 30) { return "🟡" }
-            if (value > 60) { return "🔴" }
+            if (value >= 30) { return "🟡" }
+            if (value >= 60) { return "🔴" }
             return ""    
     }
     return ""
@@ -40,6 +42,7 @@ function clockTime(number) {
   return clockTime;
 }
 
+// Creating table using Dataview's functions
 dv.table(["Date", "", "Bedtime", "", "Wakeup", "", "Hours Slept", "", "In Bed (min)"], 
 dv.pages("#journal")
 	.sort(p => p.file.ctime, "desc")
@@ -58,10 +61,10 @@ dv.pages("#journal")
 //Sets all columns to the same width
 this.container.querySelectorAll(".table-view-table td").forEach(s => s.style.width ="150px");
 
+//Sets alert dot columns to a shorter width, does so by assuming every 2nd column is for a dot
 for (let i = 2; i < 8; i+=2) {  
   this.container.querySelectorAll(".table-view-table td:nth-child(" + i + ")").forEach(s => s.style.width = "10px");
 }
-
 
 
 // Put all dataviewjs in a scroll view
